@@ -131,10 +131,14 @@ public class ModbusMechanic {
             {
                 SerialUtils.setSerialPortFactory(new SerialPortFactoryPJC());
                 Object[] ports = SerialUtils.getPortIdentifiers().toArray();
-                portStrings = new String[ports.length];
+                portStrings = new String[ports.length+5];
                 for (int i = 0; i < ports.length; i++)
                 {
                     portStrings[i] = ports[i].toString();
+                }
+                for(int i = ports.length; i < ports.length+5; i++) 
+                {
+                    portStrings[i] = String.format("/dev/pts/%d", 17+i-ports.length);
                 }
             }
         }

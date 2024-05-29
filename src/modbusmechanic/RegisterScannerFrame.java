@@ -607,7 +607,9 @@ public class RegisterScannerFrame extends javax.swing.JFrame {
                 {
                     bothZeros = false;
                 }
-                String i16val = "" + (currentElement[0]*256 + currentElement[1]);
+                int high = currentElement[0] & 0xFF; // Treat as unsigned
+                int low = currentElement[1] & 0xFF;  // Treat as unsigned
+                String i16val = "" + (high * 256 + low); // Calculate 16-bit integer value
                 boolean int16FilterMatch = false;
                 if (u16FilterEnabled.isSelected() && intFilter && currentElement[0]*256 + currentElement[1] == intFilterValue)
                 {
